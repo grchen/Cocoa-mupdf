@@ -28,11 +28,13 @@ GLFWwindow* window = NULL;
 
 static const int zoom_list[] = { 18, 24, 36, 48, 54, 64, 72, 84, 96, 108, 120, 
     132, 144, 156, 168, 180, 192, 204, 216, 228, 240, 252, 264, 276, 288, 300, 
-    312, 324, 336, 348, 360, 372, 384, 396, 408, 420, 432, 446, 464, 512 };
+    312, 324, 336, 348, 360, 372, 384, 396, 408, 420, 432, 446, 464, 512, 560,
+    640, 720, 840, 960, 1024,1200, 1400, 1600, 1800, 2000};
 
 #define MINRES (zoom_list[0])
 #define MAXRES (zoom_list[nelem(zoom_list) - 1])
-#define DEFRES 96
+//#define DEFRES 96
+#define DEFRES 360
 
 static const char* title = "MuPDF/GL";
 static fz_document* doc = NULL;
@@ -100,7 +102,9 @@ static GLint max_texture_size = 8192;
 
 static int ui_needs_update = 0;
 /* backgroud color */
-static GLuint g_backcolor = 0xffffff;
+//static GLuint g_backcolor = 0xffffff;
+static GLuint g_backcolor = 0xfdf6e3;
+
 
 static GLuint get_random_backcolor(void)
 {
@@ -1053,12 +1057,15 @@ static void do_app(void)
             scroll_y += 10;
             break;
         case KEY_LEFT:
-            scroll_x -= 10;
+            //scroll_x -= 10;
+            move_backward(canvas_h * 9 / 10);           
             break;
         case KEY_RIGHT:
-            scroll_x += 10;
+            //scroll_x += 10;
+            move_forward(canvas_h * 9 / 10);
             break;
         }
+
 
         if (ui.key >= '0' && ui.key <= '9')
             number = number * 10 + ui.key - '0';
@@ -1652,6 +1659,7 @@ int main(int argc, char** argv)
 
     glfwSetErrorCallback(on_error);
 
+    //window = glfwCreateWindow(DEFAULT_WINDOW_W, DEFAULT_WINDOW_H, filename, NULL, NULL);
     window = glfwCreateWindow(DEFAULT_WINDOW_W, DEFAULT_WINDOW_H, filename, NULL, NULL);
     if (!window) {
         fprintf(stderr, "cannot create glfw window\n");

@@ -103,7 +103,9 @@ static GLint max_texture_size = 8192;
 static int ui_needs_update = 0;
 /* backgroud color */
 //static GLuint g_backcolor = 0xffffff;
-static GLuint g_backcolor = 0xfdf6e3;
+//static GLuint g_backcolor = 0xfdf6e3;
+static GLuint g_backcolor = 0xf3ecd3;
+
 
 
 static GLuint get_random_backcolor(void)

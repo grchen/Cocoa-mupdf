@@ -1714,6 +1714,7 @@ int main(int argc, char** argv)
     render_page();
     update_title();
     shrinkwrap();
+    
 
     glfwSetFramebufferSizeCallback(window, on_reshape);
     glfwSetCursorPosCallback(window, on_mouse_motion);
@@ -1726,6 +1727,7 @@ int main(int argc, char** argv)
     glfwGetFramebufferSize(window, &window_w, &window_h);
 
     ui_needs_update = 1;
+
 
     while (!glfwWindowShouldClose(window)) {
         glfwWaitEvents();
